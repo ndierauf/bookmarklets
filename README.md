@@ -26,4 +26,4 @@ This is a convenience script used for copying a string containing the link to th
 "[proto PR-805](https://github.com/chorusview/proto/pull/805) [Added AttrValue.UpdateReason value to SetAttrValueRequest]"
 
 ## Credits
-I copied the idea years ago from somewhere on the internet for quickly constructing a Jira ticket link and title. I've since modified the scripts to accommodate changes in Jira ticket page formatting. And, I've used Cursor for making the selection of HTML content more robust.
+I copied the idea years ago from somewhere on the internet for quickly constructing a Jira ticket link and title. I've modified the scripts over time to accommodate changes in Jira ticket page formatting. And, I've used Cursor for making the selection of HTML content more robust.
