@@ -23,4 +23,4 @@ This is a convenience script used for copying a string containing the link to th
 ### GitPullRequestBookmarklet.js
 This is a convenience script used for copying a string containing the link to the GitHub pull request title. This can then be pasted into a document or email body. The result looks something like this:
 
-"[EDA-138 PR-EDA-138](https://chorusview.atlassian.net/browse/EDA-138) [[EDA-138] EAV Modify 'setAttribute()' endpoint to include parameter for UpdateReason - Jira]"
+"[proto PR-805](https://github.com/chorusview/proto/pull/805) [Added AttrValue.UpdateReason value to SetAttrValueRequest]"
