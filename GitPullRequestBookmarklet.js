@@ -1,9 +1,42 @@
 javascript:(
     async function () {
-        function getTicketNumber() {
-            return (
-                location.pathname.split('/').pop()
-            );
+        function getPathSegments() {
+            return location.pathname.split('/').filter(Boolean);
+        }
+
+        function getPullRequestNumber() {
+            const segments = getPathSegments();
+            const pullIndex = segments.indexOf('pull');
+
+            if (pullIndex !== -1 && segments[pullIndex + 1]) {
+                return segments[pullIndex + 1];
+            }
+
+            return segments.pop() || 'unknown';
+        }
+
+        function getRepoName() {
+            const segments = getPathSegments();
+            return segments[1] || 'repo';
+        }
+
+        function getPullRequestTitle() {
+            const pageTitle = document.title || '';
+            const byMarker = ' by ';
+            const byMarkerIndex = pageTitle.indexOf(byMarker);
+
+            if (byMarkerIndex > 0) {
+                return pageTitle.slice(0, byMarkerIndex).trim();
+            }
+
+            const pullRequestMarker = ' · Pull Request #';
+            const pullRequestMarkerIndex = pageTitle.indexOf(pullRequestMarker);
+
+            if (pullRequestMarkerIndex > 0) {
+                return pageTitle.slice(0, pullRequestMarkerIndex).trim();
+            }
+
+            return pageTitle.trim() || 'Pull Request';
         }
 
         function copyWithExecCommand(value) {
@@ -53,12 +86,13 @@ javascript:(
             }
         }
 
-        const ticketNumber = getTicketNumber();
-        const heading = document.querySelector('[data-testid="issue.views.issue-base.foundation.summary.heading"]');
-        const ticketSummary = heading?.textContent?.trim() || document.title || 'Jira Story';
-        const ticketUrl = `${location.origin}/browse/${ticketNumber}`;
-        const html = `<a href="${ticketUrl}">${ticketNumber}</a>` + " [" + ticketSummary + "]";
-        const text = `[${ticketNumber}](${ticketUrl})` + " [" + ticketSummary + "]";
+        const prNumber = getPullRequestNumber();
+        const repoName = getRepoName();
+        const prTitle = getPullRequestTitle();
+        const prUrl = `${location.origin}${location.pathname}`;
+        const label = `${repoName} PR-${prNumber}`;
+        const html = `<a href="${prUrl}">${label}</a>` + " [" + prTitle + "]";
+        const text = `[${label}](${prUrl})` + " [" + prTitle + "]";
 
         if (!document.hasFocus()) {
             window.focus();
