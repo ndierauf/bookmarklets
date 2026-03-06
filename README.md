@@ -24,3 +24,6 @@ This is a convenience script used for copying a string containing the link to th
 This is a convenience script used for copying a string containing the link to the GitHub pull request title. This can then be pasted into a document or email body. The result looks something like this:
 
 "[proto PR-805](https://github.com/chorusview/proto/pull/805) [Added AttrValue.UpdateReason value to SetAttrValueRequest]"
+
+## Credits
+I copied the idea years ago from somewhere on the internet for quickly constructing a Jira ticket link and title. I've since modified the scripts to accommodate changes in Jira ticket page formatting. And, I've used Cursor for making the selection of HTML content more robust.
